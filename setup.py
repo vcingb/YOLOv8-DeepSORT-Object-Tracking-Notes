@@ -3,14 +3,17 @@
 import re
 from pathlib import Path
 
-import pkg_resources as pkg
+# import pkg_resources as pkg
 from setuptools import find_packages, setup
 
 # Settings
 FILE = Path(__file__).resolve()
 ROOT = FILE.parent  # root directory
 README = (ROOT / "README.md").read_text(encoding="utf-8")
-REQUIREMENTS = [f'{x.name}{x.specifier}' for x in pkg.parse_requirements((ROOT / 'requirements.txt').read_text())]
+# REQUIREMENTS = [f'{x.name}{x.specifier}' for x in pkg.parse_requirements((ROOT / 'requirements.txt').read_text())]
+# 简单的读取方法
+with open(ROOT / 'requirements.txt', encoding='utf-8') as f:
+    REQUIREMENTS = [line.strip() for line in f if line.strip() and not line.startswith('#')]
 
 
 def get_version():
